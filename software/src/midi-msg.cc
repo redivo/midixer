@@ -1,6 +1,6 @@
 /**************************************************************************************************/
 /**
- * \file   midi-msg.h
+ * \file   midi-msg.cc
  * \brief  Implementation of generic MIDI messages
  *
  * This file was written based on information of these two references:
@@ -13,6 +13,8 @@
 
 #include <stdio.h>
 #include <string.h>
+
+namespace midi {
 
 /**************************************************************************************************/
 
@@ -62,7 +64,7 @@ int8_t MidiMsg::getControl()
 const char* MidiMsg::getString()
 {
     const char* type = getMsgTypeStr();
-    const char* raw_data = getMsgTypeStr();
+    const char* raw_data = getRawDataString();
     static char buff[MIDI_MSG_MAX_STRING_SIZE];
 
     sprintf(buff, "==============================\r\n"
@@ -153,3 +155,7 @@ uint8_t MidiMsg::getRawVelocity()
     // Note is the 7 LSB of byte 3
     return raw_data_.byte3 & 0x7F;
 }
+
+/**************************************************************************************************/
+
+}  // namespace midi

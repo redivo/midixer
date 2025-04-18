@@ -22,6 +22,7 @@ if(${TARGET} STREQUAL "arduino_micro")
     set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS}")
     set(CMAKE_EXE_LINKER_FLAGS "-mmcu=${MCU}")
 
+    # Add arduino compilation
     add_subdirectory(midixer_arduino)
 else()
     message(STATUS "💻 Compiling for testing")
@@ -29,6 +30,9 @@ else()
     # Set compilation flags
     set(CMAKE_CXX_STANDARD 17)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+
+    # Add tests compilation
+    add_subdirectory(tests)
 endif()
 
 # Subdirectories

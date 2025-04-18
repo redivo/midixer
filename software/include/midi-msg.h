@@ -23,6 +23,7 @@
 //!< Maximum size of a string used in this class
 #define MIDI_MSG_MAX_STRING_SIZE (MIDI_MSG_MAX_RAW_DATA_STRING_SIZE + MIDI_MSG_MAX_TYPE_STRING_SIZE)
 
+namespace midi {
 
 /**************************************************************************************************/
 /**
@@ -142,5 +143,9 @@ class MidiMsg {
    protected:
     midi_msg_t raw_data_;  //!< Raw MIDI data
 };
+
+/**************************************************************************************************/
+
+}  // namespace midi
 
 #endif // __MIDIXER_SOFTWARE_INCLUDE_MIDI_MSG_H__
