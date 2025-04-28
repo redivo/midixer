@@ -10,6 +10,7 @@ FetchContent_MakeAvailable(googletest)
 # Compile test
 add_executable(test
   test-midi-msg.cc
+  test-track.cc
 )
 
 # Link GTest and pthread

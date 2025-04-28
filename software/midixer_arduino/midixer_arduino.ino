@@ -7,6 +7,7 @@
 
 #include "MIDIUSB.h"
 #include "midi-msg.h"
+#include "track.h"
 
 void setup()
 {
@@ -15,6 +16,7 @@ void setup()
 
 void loop() {
     midiEventPacket_t rx;
+    midixer::Track track;
 
     do {
         rx = MidiUSB.read();
