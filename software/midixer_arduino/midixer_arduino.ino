@@ -8,6 +8,7 @@
 #include "MIDIUSB.h"
 #include "midi-msg.h"
 #include "track.h"
+#include "mackie-control.h"
 
 void setup()
 {
@@ -29,8 +30,8 @@ void loop() {
                 .byte3 = rx.byte3,
             };
 
-            midi::MidiMsg event(midi);
-            Serial.print(event.getString());
+            mcu::MidiMcuMsg mcu(midi);
+            Serial.print(mcu.getString());
         }
 
     } while (rx.header != 0);

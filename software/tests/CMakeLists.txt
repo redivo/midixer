@@ -11,6 +11,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(test
   test-midi-msg.cc
   test-track.cc
+  test-mackie-control.cc
 )
 
 # Link GTest and pthread
