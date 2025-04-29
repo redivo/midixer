@@ -8,6 +8,7 @@ include_directories(${INCLUDE_DIR})
 # Configure environment according to target
 if(${TARGET} STREQUAL "arduino_micro")
     message(STATUS "🤖 Compiling for Arduino Micro")
+    message(STATUS "🤖 Installation set to port ${SERIAL_PORT}")
 
     # Set parameters
     set(MCU atmega32u4)

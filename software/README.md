@@ -2,7 +2,7 @@
 
 First of all let's take a look in a big picture of this project:
 
-![MIdiXER Overview](./overview.drawio.png)
+![MIdiXER Overview](./doc-files/overview.drawio.png)
 
 This software performs the connection between the physical interface (knobs, faders and buttons) and
 the Digital Audio Workstation (DAW) in your PC.
@@ -19,7 +19,7 @@ attributes other meaning to the messages.
 This project aims to implement something flexible enough to be possible to easily change the base
 board and protocol, so the following architecture is proposed:
 
-![MIdiXER Architecture](./arch.drawio.png)
+![MIdiXER Architecture](./doc-files/arch.drawio.png)
 
 ### Lib MIdiXER
 
@@ -72,10 +72,11 @@ To build and run tests:
 
 ### Building for Arduino Micro
 
-To build and install:
+To build:
  1. From inside of `software` directory
  2. Run `./build-arduino-micro.sh`
- 3. Enter in build directory: `cd _build_arduino_micro`
- 4. Connect you Arduino Micro
- 5. Install software with `ARDUINO_PORT=<DEV-PORT> make install` where `<DEV-PORT>` is the path for
-    serial port (`/dev/ttyACM0` for example)
+
+To build and install:
+ 1. From inside of `software` directory
+ 2. Connect you Arduino Micro
+ 3. Run `./build-arduino-micro.sh /dev/ttyXXXX`

@@ -8,16 +8,19 @@ add_custom_target(
 )
 add_dependencies(build midixer)
 
-message(STATUS ${CMAKE_SOURCE_DIR})
 string(CONFIGURE [[
     message(STATUS "📦 Installation: upload to Arduino!")
-    message(STATUS "📦 Using port defined in env var ARDUINO_PORT: $ENV{ARDUINO_PORT}")
+    message(STATUS "📦 Using FQBN: ${BOARD_NAME_FQBN}")
+    message(STATUS "📦 Using SRC_DIR: ${CMAKE_SOURCE_DIR}")
+    message(STATUS "📦 Using BIN_DIR: ${CMAKE_BINARY_DIR}")
+    message(STATUS "📦 Using port SERIAL_PORT: ${SERIAL_PORT}")
 
-    if(NOT DEFINED ENV{ARDUINO_PORT})
-        message(FATAL_ERROR "❌ Env var ARDUINO_PORT is not set. "
-                            "Please use 'ARDUINO_PORT=/tty/??? make install'")
+    SET(SERIAL_PORT ${SERIAL_PORT})
+    if(NOT SERIAL_PORT)
+        message(FATAL_ERROR "❌ SERIAL_PORT is not set or empty. "
+                            "Please use './build-arduino-micro.sh /dev/tty???'")
     endif()
     execute_process(COMMAND ${CMAKE_SOURCE_DIR}/midixer_arduino/compile.sh
-                ${BOARD_NAME_FQBN} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} $ENV{ARDUINO_PORT})
+                ${BOARD_NAME_FQBN} ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${SERIAL_PORT})
 ]] INSTALL_COMMAND)
 install(CODE "${INSTALL_COMMAND}")
