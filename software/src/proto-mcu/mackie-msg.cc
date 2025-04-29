@@ -9,7 +9,7 @@
  */
 /**************************************************************************************************/
 
-#include "mackie-control.h"
+#include "proto-mcu/mackie-msg.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -553,5 +553,7 @@ const char* MidiMcuMsg::getString()
                 getRawDataString());
     return out;
 }
+
+/**************************************************************************************************/
 
 }  // namespace mcu

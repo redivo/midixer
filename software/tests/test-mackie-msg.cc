@@ -6,7 +6,7 @@
 /**************************************************************************************************/
 
 #include <gtest/gtest.h>
-#include "mackie-control.h"
+#include "proto-mcu/mackie-msg.h"
 
 using namespace mcu;
 

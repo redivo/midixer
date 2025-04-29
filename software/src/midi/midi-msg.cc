@@ -9,7 +9,7 @@
  */
 /**************************************************************************************************/
 
-#include "midi-msg.h"
+#include "midi/midi-msg.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -154,6 +154,26 @@ uint8_t MidiMsg::getRawVelocity()
 {
     // Note is the 7 LSB of byte 3
     return raw_data_.byte3 & 0x7F;
+}
+
+/**************************************************************************************************/
+
+uint16_t MidiMsg::getRawPitchBend()
+{
+    // Byte 2 has the 7 LS bits
+    uint8_t lsb = (raw_data_.byte2 & 0x7F);
+
+    // Byte 3 has the 7 MS bits
+    uint8_t msb = (raw_data_.byte3 & 0x7F);
+
+    return (msb << 7) + lsb;
+}
+
+/**************************************************************************************************/
+
+midi_msg_t MidiMsg::getRawData()
+{
+    return raw_data_;
 }
 
 /**************************************************************************************************/

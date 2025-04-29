@@ -6,7 +6,7 @@
 /**************************************************************************************************/
 
 #include <gtest/gtest.h>
-#include "track.h"
+#include "midixer/track.h"
 
 using namespace midixer;
 

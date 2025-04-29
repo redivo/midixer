@@ -9,8 +9,8 @@
  */
 /**************************************************************************************************/
 
-#ifndef __MIDIXER_SOFTWARE_INCLUDE_MIDI_MSG_H__
-#define __MIDIXER_SOFTWARE_INCLUDE_MIDI_MSG_H__
+#ifndef __MIDIXER_SOFTWARE_INCLUDE_MIDI_MIDI_MSG_H__
+#define __MIDIXER_SOFTWARE_INCLUDE_MIDI_MIDI_MSG_H__
 
 #include <stdint.h>
 
@@ -34,6 +34,16 @@ typedef struct {
     uint8_t byte2;  //!< This data depends on the first one
     uint8_t byte3;  //!< This data depends on the first and second ones
 } midi_msg_t;
+
+/**
+ * \brief  Overload of == operator
+ */
+inline bool operator==(const midi_msg_t& lhs, const midi_msg_t& rhs)
+{
+    return (lhs.byte1 == rhs.byte1) &&
+           (lhs.byte2 == rhs.byte2) &&
+           (lhs.byte3 == rhs.byte3);
+}
 
 /**************************************************************************************************/
 /**
@@ -140,6 +150,19 @@ class MidiMsg {
      */
     uint8_t getRawVelocity();
 
+    /**
+     * \brief  Getter for raw pitch bend value. Does not perform any verification in data and
+     *         assumes that the message has a MIDI pitch bend in it.
+     * \return 14 bit pitch bend. The 2 MSb are always 0
+     */
+    uint16_t getRawPitchBend();
+
+    /**
+     * \brief  Getter for raw data
+     * \return midi_msg_t containing the raw data
+     */
+    midi_msg_t getRawData();
+
    protected:
     midi_msg_t raw_data_;  //!< Raw MIDI data
 };
@@ -148,4 +171,4 @@ class MidiMsg {
 
 }  // namespace midi
 
-#endif // __MIDIXER_SOFTWARE_INCLUDE_MIDI_MSG_H__
+#endif // __MIDIXER_SOFTWARE_INCLUDE_MIDI_MIDI_MSG_H__

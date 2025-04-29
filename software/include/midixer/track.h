@@ -5,8 +5,8 @@
  */
 /**************************************************************************************************/
 
-#ifndef __MIDIXER_SOFTWARE_INCLUDE_TRACK_H__
-#define __MIDIXER_SOFTWARE_INCLUDE_TRACK_H__
+#ifndef __MIDIXER_SOFTWARE_INCLUDE_MIDIXER_TRACK_H__
+#define __MIDIXER_SOFTWARE_INCLUDE_MIDIXER_TRACK_H__
 
 #include <stdint.h>
 
@@ -79,13 +79,13 @@ class Track {
      * \brief  Getter for fader
      * \return Fader state
      */
-    uint8_t getFader();
+    uint16_t getFader();
 
     /**
      * \brief  Setter for fader
      * \param  fader  Value to be set
      */
-    void setFader(uint8_t fader);
+    void setFader(uint16_t fader);
 
     /**
      * \brief  Getter for pan
@@ -125,18 +125,18 @@ class Track {
     void setName(char name[MAX_TRACK_NAME_LEN]);
 
    protected:
-    bool mute_state_ = false;        //!< Mute ON/OFF
-    bool solo_state_ = false;        //!< Solo ON/OFF
-    bool arm_state_ = false;         //!< Arm record ON/OFF
-    uint8_t number_ = 0;             //!< Track number
-    uint8_t fader_level_ = 0;        //!< Fader volume level
-    int8_t pan_ = 0;                 //!< Pan configuration
-    uint8_t meter_ = 0;              //!< Volume Meter
-    char name_[MAX_TRACK_NAME_LEN];  //!< Track Name
+    bool mute_state_ = false;             //!< Mute ON/OFF
+    bool solo_state_ = false;             //!< Solo ON/OFF
+    bool arm_state_ = false;              //!< Arm record ON/OFF
+    uint8_t number_ = 0;                  //!< Track number
+    uint16_t fader_level_ = 0;            //!< Fader volume level
+    int8_t pan_ = 0;                      //!< Pan configuration
+    uint8_t meter_ = 0;                   //!< Volume Meter
+    char name_[MAX_TRACK_NAME_LEN] = "";  //!< Track Name
 };
 
 /**************************************************************************************************/
 
 }  // namespace midixer
 
-#endif  // __MIDIXER_SOFTWARE_INCLUDE_TRACK_H__
+#endif  // __MIDIXER_SOFTWARE_INCLUDE_MIDIXER_TRACK_H__

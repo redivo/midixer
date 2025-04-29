@@ -6,7 +6,7 @@
 /**************************************************************************************************/
 
 #include <gtest/gtest.h>
-#include "midi-msg.h"
+#include "midi/midi-msg.h"
 
 using namespace midi;
 
@@ -136,6 +136,45 @@ TEST(MidiMsgTest, GetStringReturnsNonNull)
                                   "Byte 1: 0x90\r\n"
                                   "Byte 2: 0x45\r\n"
                                   "Byte 3: 0x7f\r\n\r\n");
+}
+
+/**************************************************************************************************/
+
+TEST(MidiMsgTest, GetRawData)
+{
+    midi_msg_t midi = {
+        .byte1 = 0x90,
+        .byte2 = 0x45,
+        .byte3 = 0x7F,
+    };
+    MidiMsg msg(midi);
+
+    ASSERT_EQ(midi, msg.getRawData());
+}
+
+/**************************************************************************************************/
+
+TEST(MidiMsgTest, GetRawPitchBend)
+{
+    midi_msg_t midi = {
+        .byte1 = 0xE0,
+        .byte2 = 0x87, // lsb
+        .byte3 = 0x64, // msb
+    };
+    MidiMsg msg(midi);
+
+    /*
+     *         msb      lsb
+     *     +-------------------
+     * hex |   0x64      0x87
+     * bit | 01100100  10000111  ---only 7 lsb are considered---+
+     *     |                                                    |
+     * bit |  1100100   0000111  <------------------------------+
+     * bit |     11001000000111  Concatenated
+     * hex |             0x3207
+     * dec |             12807
+     */
+    ASSERT_EQ(12807, msg.getRawPitchBend());
 }
 
 /**************************************************************************************************/
