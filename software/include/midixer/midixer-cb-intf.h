@@ -1,6 +1,6 @@
 /**************************************************************************************************/
 /**
- * \file   midixer-cbs.h
+ * \file   midixer-cbs-intf.h
  * \brief  Interface for MIdiXER callbacks
  *
  */
@@ -48,7 +48,7 @@ class MidixerCbs {
     virtual void updateMute(uint8_t track_num, bool mute) = 0;
 
     /**
-     * \brief  Update fader position
+     * \brief  Update fader position where 0x000 is the minimum and 0xFFFF is max
      * \param  track_num   Number of the track
      * \param  pos         Fader position to be set
      */
