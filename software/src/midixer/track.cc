@@ -5,9 +5,8 @@
  */
 /**************************************************************************************************/
 
-#include "track.h"
-
 #include <string.h>
+#include "midixer/track.h"
 
 namespace midixer {
 
@@ -69,14 +68,14 @@ void Track::setNumber(uint8_t number)
 
 /**************************************************************************************************/
 
-uint8_t Track::getFader()
+uint16_t Track::getFader()
 {
     return fader_level_;
 }
 
 /**************************************************************************************************/
 
-void Track::setFader(uint8_t fader)
+void Track::setFader(uint16_t fader)
 {
     fader_level_ = fader;
 }

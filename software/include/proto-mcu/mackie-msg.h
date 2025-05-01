@@ -9,14 +9,18 @@
  */
 /**************************************************************************************************/
 
-#ifndef __MIDIXER_SOFTWARE_INCLUDE_MACKIE_CONTROL_H__
-#define __MIDIXER_SOFTWARE_INCLUDE_MACKIE_CONTROL_H__
+#ifndef __MIDIXER_SOFTWARE_INCLUDE_PROTO_MCU_MACKIE_MSG_H__
+#define __MIDIXER_SOFTWARE_INCLUDE_PROTO_MCU_MACKIE_MSG_H__
 
-#include "midi-msg.h"
-#include "track.h"
+#include "midi/midi-msg.h"
+#include "midixer/track.h"
+#include "midixer/midixer-cb-intf.h"
 
 //!< Max size of message grou name
 #define MAX_MESSAGE_GROUP_NAME_SIZE 16
+
+//!< Max track name in LCD, where the last one should be \0
+#define MAX_TRACK_NAME_LCD_SIZE 8
 
 namespace mcu {
 
@@ -245,12 +249,19 @@ typedef enum {
     MSG_GROUP_UNKNOWN,
 } msg_group_t;
 
+
 /**************************************************************************************************/
 /**
  * \brief  Class that defines Mackie Control Universal (MCU) MIDI Protocol message
  */
 class MidiMcuMsg : public midi::MidiMsg {
    public:
+    /**********************************************************************************************/
+    /**
+     * \brief  Default constructor
+     */
+    MidiMcuMsg() = default;
+
     /**********************************************************************************************/
     /**
      * \brief  Constructor given an event
@@ -449,4 +460,4 @@ class MidiMcuMsg : public midi::MidiMsg {
 
 }  // namespace mcu
 
-#endif  // __MIDIXER_SOFTWARE_INCLUDE_MACKIE_CONTROL_H__
+#endif  // __MIDIXER_SOFTWARE_INCLUDE_PROTO_MCU_MACKIE_MSG_H__
